@@ -89,7 +89,11 @@ topvalues_sdata<-cor(sDATA1) %>%
   filter(row_number()==1)
 
 ############################# Original train and test sets ############################
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # Loop to classify cl to SETROW columns into data set
 SDATA$SETROW <- NA
 
@@ -102,7 +106,11 @@ for (i in 1:716){
     SDATA$SETROW[i] = "SETROW3"
   }
 }
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # Creating the 80% random train set interval by taking ONLY using setrow 1, we replicate this for the other setrow functions
 SETROW1 = SDATA[which(SDATA$SETROW =="SETROW1"),]
 n <- nrow(SETROW1[which(SETROW1$SETROW=="SETROW1"),])
@@ -136,7 +144,11 @@ TEST_no <- TEST_SET[,-c(1,402,403)]
 TEST_label <- TEST_SET[,"CL"]
 
 ############################## Running KNN using K = 12 ##############################
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # Compute the percentage of correct classification
 RNGkind(sample.kind = "Rounding")
 set.seed(1)
@@ -160,7 +172,11 @@ table(data.frame(knn.predtrain,TRAIN_label))
 table(data.frame(knn.predtest, TEST_label))
 
 ############################## Finding the Best K ##############################
+<<<<<<< HEAD
 
+=======
+                     
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # Finding percent accuracy for each value of 5,10...100
 set.seed(1)
 i=1
@@ -173,7 +189,11 @@ for (i in seq(5, 100, by = 5)){
 }
 
 ############################ Plot of Accuracy vs K ##############################                           
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # Fit the model on the training set finding the optimized value of k for test set
 # Running a loop to find accuracy for test set
 set.seed(1)
@@ -206,7 +226,11 @@ lines(K.set, knn.test.accuracy, col="red",lty=2)
 
 
 ######################### KNN Before subsetting PACKS 1-4 #########################                  
+<<<<<<< HEAD
 
+=======
+                   
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # Applying the "best" k value to the both train and test set.
 set.seed(1)
 knn.predtrainbest<- knn(train=TRAIN_no,
@@ -234,6 +258,7 @@ Conf(testtt)
 #yielding 95% CI : (0.6734, 0.8136)
 
 ############################ Create subsets for PACKS 1-4 ############################
+<<<<<<< HEAD
 
 # PACK 1 L: 0-9 and M: 0-9 making a 100 attributes
 PACK1 <- SDATA[,c(2:11,22:31,42:51,62:71,82:91,102:111,122:131,142:151,162:171,182:191,402,403)]
@@ -241,6 +266,15 @@ PACK2 <- SDATA[,c(12:21,32:41,52:61,72:81,92:101,112:121,132:141,152:161,172:181
 PACK3 <- SDATA[,c(212:221,232:241,252:261,272:281,292:301,312:321,332:341,352:361,372:381,392:401,402,403)]
 PACK4 <- SDATA[,c(202:211,222:231,242:251,262:271,282:291,302:311,322:331,342:351,362:371,382:391,402,403)]
 
+=======
+                            
+# PACK 1 L: 0-9 and M: 0-9 making a 100 attributes
+PACK1 <- SDATA[,c(2:11,22:31,42:51,62:71,82:91,102:111,122:131,142:151,162:171,182:191,402,403)]
+PACK2 <- SDATA[,c(12:21,32:41,52:61,72:81,92:101,112:121,132:141,152:161,172:181,192:201,402,403)]
+PACK3 <- SDATA[,c(212:221,232:241,252:261,272:281,292:301,312:321,332:341,352:361,372:381,392:401,402,403)]
+PACK4 <- SDATA[,c(202:211,222:231,242:251,262:271,282:291,302:311,322:331,342:351,362:371,382:391,402,403)]
+
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # Pack 1 CL1
 # Dividing set of pack 1 of .8 of train .2 test
 packcl1 = PACK1[which(PACK1$SETROW=="SETROW1"),]
@@ -262,7 +296,11 @@ n <- nrow(packcl3)
 PACKCL31 <- sample(1:n, 0.8*n)
 PACKCL3_train1 <- packcl3[PACKCL31,]
 PACKCL3_test1 <- packcl3[-PACKCL31,]
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # UNIONIZING PACK 1 CLs
 PACK1_TRAINALL <- rbind(PACKCL1_train1,PACKCL2_train1,PACKCL3_train1)
 PACK1_TESTALL <- rbind(PACKCL1_test1,PACKCL2_test1,PACKCL3_test1)
@@ -366,7 +404,11 @@ PACK4_TESTALL_no<- PACK4_TESTALL[,-c(101,102)]
 PACK4_TESTALL_LABEL <- PACK4_TESTALL[,"CL"]
 
 ############################ KNN After subsetting PACKS 1-4 ############################                        
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # Apply KNN using K = 5 to all 4 pack test sets
 set.seed(1)
 knn.predPACK1 <- knn(train=PACK1_TRAINALL_no,
@@ -388,7 +430,11 @@ knn.predPACK4 <- knn(train=PACK4_TRAINALL_no,
                      test=PACK4_TESTALL_no,
                      cl = PACK4_TRAINALL_LABEL,
                      k=5)
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # Find accuracy and set it to weight
 w1 <- mean(knn.predPACK1 == PACK1_TESTALL_LABEL)
 w2 <- mean(knn.predPACK2 == PACK2_TESTALL_LABEL)
@@ -406,21 +452,35 @@ wpack1 <- PACK1_no*w1
 wpack2 <- PACK2_no*w2
 wpack3 <- PACK3_no*w3
 wpack4 <- PACK4_no*w4
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # Bind the weighted packs together
 wpackfull <- cbind(wpack1,wpack2,wpack3,wpack4,PACK1[,101])
 # Normalizing the full weight packs 
 Swpackfull <- wpackfull %>% mutate_if(is.numeric, function (x) as.vector(scale(x)))
+<<<<<<< HEAD
 
+=======
+                                     
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # Train and test labels
 waptrainset_no <- waptrainset[,-401]
 waptrainset_label <- waptrainset[,401]
-
+                                      
 waptestset_no <- waptestset[,-401]
 waptestset_label <- waptestset[,401]
+<<<<<<< HEAD
 
 #################################### Weighted KNN #################################                                       
 
+=======
+    
+#################################### Weighted KNN #################################                                       
+                                      
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 # Global Performance for both train and test set with weighted values where knn= 5
 set.seed(1)                            
 knn.predwtrain <- knn(train=waptrainset_no,
@@ -429,15 +489,27 @@ knn.predwtrain <- knn(train=waptrainset_no,
                       k=5)
 full.predwtrain <- mean(knn.predwtrain == waptrainset_label)
 full.predwtrain # 0.78 accuracy
+<<<<<<< HEAD
 
+=======
+                                     
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
 knn.predwtest <- knn(train=waptrainset_no,
                      test=waptestset_no,
                      cl = waptrainset_label,
                      k=5)
 full.predwtest<- mean(knn.predwtest == waptestset_label)
 full.predwtest
+<<<<<<< HEAD
 
 # Confusion matrix
 table(data.frame(knn.predwtrain,waptrainset_label))
 table(data.frame(knn.predwtest, waptestset_label))
 
+=======
+                                     
+# Confusion matrix
+table(data.frame(knn.predwtrain,waptrainset_label))
+table(data.frame(knn.predwtest, waptestset_label))
+                                     
+>>>>>>> 8a95f48c27c353afa20d80bf029ec09f505db612
